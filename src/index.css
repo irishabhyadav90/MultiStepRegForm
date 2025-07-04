@@ -1,68 +1,98 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* Import the core Tailwind CSS plugin integration */
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* --- Custom Font Declarations --- */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+/* Consolidate all "Big Caslon CC" variants under one font-family name */
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('../assets/fonts/Big_Caslon_CC.otf') format('opentype');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('../assets/fonts/Big_Caslon_CC_Italic.otf') format('opentype');
+  font-weight: 400; /* Regular */
+  font-style: italic; /* <--- IMPORTANT: This is the italic variant */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('../assets/fonts/Big_Caslon_CC_Bold.otf') format('opentype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('../assets/fonts/Big_Caslon_CC_Bold_Italic.otf') format('opentype');
+  font-weight: 700; /* Bold */
+  font-style: italic; 
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('../assets/fonts/Big_Caslon_CC_Black.otf') format('opentype');
+  font-weight: 900; /* Black/Heavy */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Big Caslon CC';
+  src: url('../assets/fonts/Big_Caslon_CC_Black_Italic.otf') format('opentype');
+  font-weight: 900; /* Black/Heavy */
+  font-style: italic; /* <--- IMPORTANT: This is the black italic variant */
+  font-display: swap;
+}
+
+/* --- Global Base Styles --- */
+
+body {
+  /* Use the main font family name and default to regular weight and normal style */
+  font-family: 'Big Caslon CC', serif; /* Now, 'Big Caslon CC' will load based on weight/style */
+  background-color: #F7F5EF;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Big Caslon CC', serif; /* All headings also use the same font family */
+  color: #333333;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-weight: 700; /* This will make them bold */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+/* You can still define custom CSS variables for colors if desired, like this: */
+:root {
+  --color-primary: #325C54;
+  --color-secondary: #A58B5C;
+  --color-wynn-background: #F7F5EF;
+  --color-wynn-text-dark: #333333;
+  --color-wynn-text-light: #666666;
+  --color-wynn-border: #D0D0D0;
+  --color-wynn-error: #DC2626;
+  --color-wynn-link: #007BFF;
+}
+
+a {
+  color: var(--color-wynn-link);
+  text-decoration: underline;
+}
+
+input, select, textarea, button {
   font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

@@ -1,10 +1,7 @@
-// src/components/common/Input/constants.ts
-
 export const InputValidationRegex = {
   EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   PHONE: /^\+\d{10,}$/,
 };
-
 
 export const InputConstants = {
   Variants: {

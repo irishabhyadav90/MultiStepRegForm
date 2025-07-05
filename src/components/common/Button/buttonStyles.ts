@@ -1,6 +1,5 @@
 import type { ButtonVariant, ButtonSize } from './constants';
 
-// Base styles applied to all buttons
 const baseButtonStyles = 'rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
 
 /**
@@ -31,15 +30,14 @@ export const getButtonVariantStyles = (variant: ButtonVariant): string => {
 export const getButtonSizeStyles = (size: ButtonSize): string => {
   switch (size) {
     case 'sm':
-      return 'px-4 py-2 text-sm';
+      return 'px-4 py-2 text-sm w-36';
     case 'md':
-      return 'px-6 py-3 text-base';
+      return 'px-6 py-3 text-base w-40';
     case 'lg':
-      return 'px-8 py-4 text-lg';
+      return 'px-8 py-4 text-lg w-48';
     default:
-      return 'px-6 py-3 text-base';
+      return 'px-6 py-3 text-base w-48';
   }
 };
 
-// You can also export the base styles if useful
 export { baseButtonStyles };

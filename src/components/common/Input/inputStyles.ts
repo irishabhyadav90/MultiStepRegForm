@@ -1,6 +1,4 @@
 
-
-// Base styles for the input field
 export const baseInputStyles = 'block w-full px-4 py-2 rounded-md border text-base transition-colors duration-200';
 
 /**
@@ -15,8 +13,6 @@ export const getInputBorderStyles = (hasError?: string): string => {
   return hasError ? errorBorder : defaultBorder;
 };
 
-// Styles for the label text
-export const labelTextStyles = 'block text-sm font-medium mb-1';
+export const labelTextStyles = 'block text-sm font-medium mb-1 text-left';
 
-// Styles for the error message text
 export const errorMessageStyles = 'text-sm mt-1';

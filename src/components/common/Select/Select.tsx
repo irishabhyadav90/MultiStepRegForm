@@ -1,27 +1,24 @@
-// src/components/common/Select/Select.tsx
 import React, { type SelectHTMLAttributes } from 'react';
 import {
   baseSelectStyles,
   getSelectBorderStyles,
   labelTextStyles,
   errorMessageStyles,
-} from './selectStyles'; // Import styling functions
+} from './selectStyles';
+import DropdownIcon from '../../svg/Dropdown';
+import InfoIcon from '../../svg/InfoIcon';
 
-/**
- * Defines the structure for each option in a select dropdown.
- * This interface is now co-located with the Select component.
- */
 export interface SelectOption {
   value: string;
   label: string;
 }
 
-// Define the props interface for our Select component
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   error?: string;
   options: SelectOption[];
   placeholder?: string;
+  infoTooltip?: boolean;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -31,6 +28,7 @@ const Select: React.FC<SelectProps> = ({
   options,
   placeholder,
   className,
+  infoTooltip,
   ...props
 }) => {
   const selectId = id || props.name || `select-${Math.random().toString(36).substring(2, 9)}`;
@@ -39,9 +37,14 @@ const Select: React.FC<SelectProps> = ({
   return (
     <div className="mb-4">
       {label && (
-        <label htmlFor={selectId} className={labelTextStyles} style={{ color: 'var(--color-wynn-text-dark)' }}>
-          {label}
-        </label>
+        <div className="flex items-center gap-2 mb-1">
+          <label htmlFor={selectId} className={`${labelTextStyles} flex-1`} style={{ color: 'var(--color-wynn-text-dark)' }}>
+            {label}
+          </label>
+          {infoTooltip && (
+            <InfoIcon className="flex-shrink-0" />
+          )}
+        </div>
       )}
       <div className="relative">
         <select
@@ -60,6 +63,9 @@ const Select: React.FC<SelectProps> = ({
             </option>
           ))}
         </select>
+       <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
+        <DropdownIcon />
+       </div>
       </div>
       {error && (
         <p className={errorMessageStyles} style={{ color: 'var(--color-wynn-error)' }}>

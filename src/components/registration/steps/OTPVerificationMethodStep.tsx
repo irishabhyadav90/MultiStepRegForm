@@ -7,11 +7,14 @@ import { BUTTONS, OTP_VERIFICATION } from '@constants/appTexts';
 
 type OtpInputFormProps = {
   email: string;
+  phone: string;
+  nextStep: () => void;
+  prevStep: () => void;
 };
 
 const OTP_LENGTH = 4;
 
-const OtpInputForm: React.FC<OtpInputFormProps> = ({ email }) => {
+const OtpInputForm: React.FC<OtpInputFormProps> = ({ email, nextStep, prevStep }) => {
 
   const { otp, inputRefs, handleChange, handleKeyDown } = useOtp(OTP_LENGTH);
 
@@ -22,8 +25,7 @@ const OtpInputForm: React.FC<OtpInputFormProps> = ({ email }) => {
       subtitle="Please enter below information to create your account."
     >
       <SectionHeading text="OTP Verification" className='text-left' />
-
-      <div className="bg-white p-8 rounded-lg shadow-sm w-full text-center">
+      <div className="p-8 rounded-lg shadow-sm w-full text-center">
         <h3 className="text-xl text-gray-800 mb-2">{OTP_VERIFICATION.ENTER_CODE}</h3>
         <p className="text-gray-500 mb-8">
           We've sent a code to <span className="text-gray-700 font-medium">{email}</span>

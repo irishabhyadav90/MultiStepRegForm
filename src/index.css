@@ -57,7 +57,7 @@
 body {
   /* Use the main font family name and default to regular weight and normal style */
   font-family: 'Big Caslon CC', serif; /* Now, 'Big Caslon CC' will load based on weight/style */
-  background-color: #F7F5EF;
+  background-color: #F7F7F7;
   color: #333333;
   margin: 0;
   padding: 0;

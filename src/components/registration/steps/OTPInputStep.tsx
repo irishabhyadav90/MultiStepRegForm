@@ -5,7 +5,11 @@ import { BUTTONS, OTP_VERIFICATION, TITLES } from '@constants/appTexts';
 import { ButtonConstants } from '@components/common/Button/constants';
 import RegistrationLayout from '@/components/layout/Registration';
 
-const OtpVerification: React.FC = () => {
+interface OTPInputStepProps {
+  prevStep: () => void;
+  nextStep: () => void;
+}
+const OtpInputStep: React.FC<OTPInputStepProps> = ({ prevStep, nextStep }) => {
   const [otpOption, setOtpOption] = useState<'phone' | 'email'>('email');
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,12 +64,12 @@ const OtpVerification: React.FC = () => {
         </div>
 
         <div className="mt-12 flex justify-between w-full">
-          <Button type="submit" variant={ButtonConstants.Variants.SECONDARY} size={ButtonConstants.Sizes.MEDIUM} className='float-left w-xs mr-5'>{BUTTONS.BACK}</Button>
-          <Button type="submit" variant={ButtonConstants.Variants.PRIMARY} size={ButtonConstants.Sizes.MEDIUM} className='float-left w-xs ml-5'>{BUTTONS.NEXT}</Button>
+          <Button type="submit" variant={ButtonConstants.Variants.SECONDARY} size={ButtonConstants.Sizes.MEDIUM} className='float-left w-xs mr-5' onClick={prevStep}>{BUTTONS.BACK}</Button>
+          <Button type="submit" variant={ButtonConstants.Variants.PRIMARY} size={ButtonConstants.Sizes.MEDIUM} className='float-left w-xs ml-5' onClick={nextStep}>{BUTTONS.NEXT}</Button>
         </div>
       </main>
     </RegistrationLayout>
   );
 };
 
-export default OtpVerification;
+export default OtpInputStep;

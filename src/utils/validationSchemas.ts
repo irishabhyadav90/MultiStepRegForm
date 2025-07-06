@@ -13,6 +13,7 @@ export const personalInfoSchema = z.object({
   agreedToTerms: z.boolean().refine(val => val === true, {
     message: 'You must agree to the terms and conditions.'
   }),
+  phoneCode: z.string().min(1, { message: 'Phone Code is required.' }),
 });
 
 /**

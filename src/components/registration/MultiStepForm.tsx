@@ -15,7 +15,6 @@ const MultiStepForm: React.FC = () => {
     residenceCountry: '',
     email: '',
     phoneNumber: '',
-    phoneCode: '',
     agreedToTerms: false
   });
 
@@ -24,7 +23,6 @@ const MultiStepForm: React.FC = () => {
 
   const onSubmit = () => {
     console.log('Form submitted:', formData);
-    // Add your form submission logic here
   };
 
   const updateFormData = (newData: Partial<PersonalInfoFormData>) => {
@@ -46,18 +44,18 @@ const MultiStepForm: React.FC = () => {
         );
       case 2:
         return (
-          <OTPVerificationMethodStep 
-            nextStep={nextStep}
-            prevStep={prevStep}
-            email={formData.email}
-            phone={formData.phoneNumber}
+          <OTPInputStep 
+          prevStep={prevStep}
+          nextStep={nextStep}
           />
         );
       case 3:
-        return (
-          <OTPInputStep 
+          return (
+          <OTPVerificationMethodStep 
             prevStep={prevStep}
             nextStep={onSubmit}
+            email={formData.email}
+            phone={formData.phoneNumber}
           />
         );
       default:
@@ -66,9 +64,9 @@ const MultiStepForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
     {renderStep()}
-    </div>
+    </>
   );
 }
 

@@ -16,8 +16,8 @@ type RegistrationLayoutProps = {
 
 const RegistrationLayout: React.FC<RegistrationLayoutProps> = ({ step, title, subtitle, showButtons = true, children, onPrev, onNext }) => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center font-serif">
-      <div className="w-full max-w-2xl mx-auto px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center font-serif w-full">
+      <div className="w-full max-w-2xl mx-auto">
         <header className="flex justify-between items-baseline mb-8">
           <div>
             <Heading level={1} className='text-left'>{title}</Heading>

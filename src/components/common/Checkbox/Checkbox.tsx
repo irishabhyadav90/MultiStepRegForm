@@ -5,7 +5,7 @@ import {
   checkedVisualStyles,
   uncheckedVisualStyles,
   errorVisualStyles,
-  checkmarkSvg,
+  CheckmarkSvg,
   labelTextStyles,
   errorMessageStyles,
 } from './checkboxStyles';
@@ -29,6 +29,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     ${error ? errorVisualStyles : ''}
   `;
 
+  console.log("props", props) 
   return (
     <div className={`flex items-start mb-4 ${className || ''}`}>
       <div className="relative flex items-center h-5 mr-3">
@@ -46,7 +47,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
             boxShadow: !props.checked && !error ? 'inset 0 0 0 1px var(--color-wynn-border)' : 'none',
           }}
         >
-          {props.checked && checkmarkSvg}
+          {CheckmarkSvg}
         </div>
       </div>
       <label htmlFor={id} className={`flex-grow ${labelTextStyles}`} style={{ color: 'var(--color-wynn-text-dark)' }}>

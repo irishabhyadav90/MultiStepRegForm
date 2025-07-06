@@ -20,9 +20,11 @@ const OtpInputForm: React.FC<OtpInputFormProps> = ({ email, nextStep, prevStep }
 
   return (
     <RegistrationLayout
-      step="Step 2 of 3"
+      step="Step 3 of 3"
       title="Registration"
       subtitle="Please enter below information to create your account."
+      onNext={nextStep}
+      onPrev={prevStep}
     >
       <SectionHeading text="OTP Verification" className='text-left' />
       <div className="p-8 rounded-lg shadow-sm w-full text-center">

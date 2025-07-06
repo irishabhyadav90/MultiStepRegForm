@@ -8,7 +8,8 @@ export const checkedVisualStyles = 'bg-[var(--color-primary)] border-[var(--colo
 export const uncheckedVisualStyles = 'bg-white border-[var(--color-wynn-border)]';
 export const errorVisualStyles = 'border-[var(--color-wynn-error)]';
 
-export const checkmarkSvg = (
+/* Todo: Move this to svg folder */
+export const CheckmarkSvg = (
   <svg
     className="w-4 h-4 text-white"
     fill="none"

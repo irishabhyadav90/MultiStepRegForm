@@ -15,7 +15,16 @@ export const FORM_LABELS = {
   RESIDENCE_COUNTRY: 'Residence Country',
   EMAIL: 'Email Address',
   PHONE_NUMBER: 'Phone Number',
-  ACCEPT_TERMS: 'I agree to the Terms and Conditions'
+  ACCEPT_TERMS: 'I agree to the terms and conditions and privacy policy.'
+};
+
+export const FORM_PLACEHOLDERS = {
+  FIRST_NAME: 'Enter first name...',
+  LAST_NAME: 'Enter last name...',
+  GENDER: 'Select gender...',
+  RESIDENCE_COUNTRY: 'Select residence country...',
+  EMAIL: 'Enter email address...',
+  PHONE_NUMBER: 'Enter phone number...'
 };
 
 // Validation messages

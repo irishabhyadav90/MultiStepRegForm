@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import SectionHeading from '@components/common/SectionHeading/SectionHeading';
-import Button from '@components/common/Button';
-import { BUTTONS, OTP_VERIFICATION, TITLES } from '@constants/appTexts';
-import { ButtonConstants } from '@components/common/Button/constants';
+import { OTP_VERIFICATION, TITLES } from '@constants/appTexts';
 import RegistrationLayout from '@/components/layout/Registration';
 
 interface OTPInputStepProps {
@@ -18,9 +16,11 @@ const OtpInputStep: React.FC<OTPInputStepProps> = ({ prevStep, nextStep }) => {
 
   return (
     <RegistrationLayout
-      step="Step 3 of 3"
+      step="Step 2 of 3"
       title="Registration"
       subtitle="Please enter below information to create your account."
+      onNext={nextStep}
+      onPrev={prevStep}
     >
       <main>
         <SectionHeading text={TITLES.PERSONAL_INFO} className='text-left' />
@@ -61,11 +61,6 @@ const OtpInputStep: React.FC<OTPInputStepProps> = ({ prevStep, nextStep }) => {
               </span>
             </label>
           </div>
-        </div>
-
-        <div className="mt-12 flex justify-between w-full">
-          <Button type="submit" variant={ButtonConstants.Variants.SECONDARY} size={ButtonConstants.Sizes.MEDIUM} className='float-left w-xs mr-5' onClick={prevStep}>{BUTTONS.BACK}</Button>
-          <Button type="submit" variant={ButtonConstants.Variants.PRIMARY} size={ButtonConstants.Sizes.MEDIUM} className='float-left w-xs ml-5' onClick={nextStep}>{BUTTONS.NEXT}</Button>
         </div>
       </main>
     </RegistrationLayout>

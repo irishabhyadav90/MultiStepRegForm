@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import Input from '@components/common/Input';
@@ -9,8 +9,9 @@ import { personalInfoSchema, type PersonalInfoFormData } from '@utils/validation
 import SectionHeading from '@common/SectionHeading/SectionHeading';
 import PhoneDropdown from '@common/PhoneDropdown/PhoneDropdown';
 import { ButtonConstants } from '@common/Button/constants';
-import { BUTTONS, FORM_LABELS } from '@constants/appTexts';
+import { BUTTONS, FORM_LABELS, FORM_PLACEHOLDERS } from '@constants/appTexts';
 import RegistrationLayout from '@/components/layout/Registration';
+import Checkbox from '@/components/common/Checkbox';
 
 interface PersonalInfoStepProps {
   formData: PersonalInfoFormData;
@@ -23,8 +24,10 @@ const RegistrationForm: React.FC<PersonalInfoStepProps> = ({ formData, updateFor
     register,
     handleSubmit,
     formState: { errors },
+    control
   } = useForm<PersonalInfoFormData>({
     resolver: zodResolver(personalInfoSchema),
+    defaultValues: formData
   });
 
   const onSubmit = (data: PersonalInfoFormData) => {
@@ -40,16 +43,18 @@ const RegistrationForm: React.FC<PersonalInfoStepProps> = ({ formData, updateFor
       subtitle="Please enter below information to create your account."
       showButtons={false}
     >
-      <form className="w-full max-w-2xl p-8 rounded" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form className="w-full max-w-2xl rounded" onSubmit={handleSubmit(onSubmit)} noValidate>
         <SectionHeading text="Personal Information" className='text-left' />
         <Input
           label={FORM_LABELS.FIRST_NAME}
+          placeholder={FORM_PLACEHOLDERS.FIRST_NAME}
           {...register('firstName')}
           error={errors.firstName?.message}
           infoTooltip
         />
         <Input
           label={FORM_LABELS.LAST_NAME}
+          placeholder={FORM_PLACEHOLDERS.LAST_NAME}
           {...register('lastName')}
           error={errors.lastName?.message}
           infoTooltip
@@ -57,7 +62,7 @@ const RegistrationForm: React.FC<PersonalInfoStepProps> = ({ formData, updateFor
         <Select
           label={FORM_LABELS.GENDER}
           options={GENDER_OPTIONS}
-          placeholder="Select gender..."
+          placeholder={FORM_PLACEHOLDERS.GENDER}
           {...register('gender')}
           error={errors.gender?.message}
           infoTooltip
@@ -65,7 +70,7 @@ const RegistrationForm: React.FC<PersonalInfoStepProps> = ({ formData, updateFor
         <Select
           label={FORM_LABELS.RESIDENCE_COUNTRY}
           options={RESIDENCE_COUNTRY_OPTIONS}
-          placeholder="Select residence country..."
+          placeholder={FORM_PLACEHOLDERS.RESIDENCE_COUNTRY}
           {...register('residenceCountry')}
           error={errors.residenceCountry?.message}
           infoTooltip
@@ -73,12 +78,45 @@ const RegistrationForm: React.FC<PersonalInfoStepProps> = ({ formData, updateFor
         <SectionHeading text="Contact Details" className='text-left' />
         <Input
           label={FORM_LABELS.EMAIL}
+          placeholder={FORM_PLACEHOLDERS.EMAIL}
           {...register('email')}
           error={errors.email?.message}
           infoTooltip
         />
-        <PhoneDropdown />
-        <Button type="submit" variant={ButtonConstants.Variants.PRIMARY} size={ButtonConstants.Sizes.SMALL} className='float-left mt-6'>{BUTTONS.NEXT}</Button>
+        <Controller
+          name="phoneNumber"
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <PhoneDropdown
+              value={value}
+              onChange={onChange}
+              error={errors.phoneNumber?.message}
+            />
+          )}
+        />
+        <div className="mt-8">
+          <Checkbox
+            id="agreedToTerms"
+            label={FORM_LABELS.ACCEPT_TERMS}
+            {...register('agreedToTerms')}
+            error={errors.agreedToTerms?.message}
+            checked={formData.agreedToTerms}
+            onChange={(e) => {
+              console.log(e.target.checked)
+              updateFormData({
+                ...formData,
+                agreedToTerms: e.target.checked
+              });
+            }}
+          />
+        </div>
+        <Button 
+          type="submit" 
+          variant={ButtonConstants.Variants.PRIMARY} 
+          size={ButtonConstants.Sizes.SMALL} 
+          className='float-left mt-6'>
+          {BUTTONS.NEXT}
+        </Button>
       </form>
     </RegistrationLayout>
   );

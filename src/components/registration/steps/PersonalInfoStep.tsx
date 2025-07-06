@@ -12,8 +12,13 @@ import { ButtonConstants } from '@common/Button/constants';
 import { BUTTONS, FORM_LABELS } from '@constants/appTexts';
 import RegistrationLayout from '@/components/layout/Registration';
 
+interface PersonalInfoStepProps {
+  formData: PersonalInfoFormData;
+  updateFormData: (newData: Partial<PersonalInfoFormData>) => void;
+  nextStep: () => void;
+}
 
-const RegistrationForm: React.FC = () => {
+const RegistrationForm: React.FC<PersonalInfoStepProps> = ({ formData, updateFormData, nextStep }) => {
   const {
     register,
     handleSubmit,
@@ -23,7 +28,8 @@ const RegistrationForm: React.FC = () => {
   });
 
   const onSubmit = (data: PersonalInfoFormData) => {
-    console.log(data);
+    updateFormData(data);
+    nextStep();
   };
 
   console.log("errors", errors)
@@ -32,9 +38,9 @@ const RegistrationForm: React.FC = () => {
       step="Step 1 of 3"
       title="Registration"
       subtitle="Please enter below information to create your account."
-
+      showButtons={false}
     >
-      <form className="w-full max-w-2xl bg-white p-8 rounded" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form className="w-full max-w-2xl p-8 rounded" onSubmit={handleSubmit(onSubmit)} noValidate>
         <SectionHeading text="Personal Information" className='text-left' />
         <Input
           label={FORM_LABELS.FIRST_NAME}

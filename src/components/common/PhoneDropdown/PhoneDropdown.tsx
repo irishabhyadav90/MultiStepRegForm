@@ -2,6 +2,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import Input from "../Input";
 import DropdownIcon from "../../svg/Dropdown";
+import { BUTTONS } from "@/constants/appTexts";
 
 interface Country {
   name: string;
@@ -20,7 +21,7 @@ const countries: Country[] = [
   { name: "Argentina", code: "AR", dialCode: "+54", flag: "🇦🇷", format: "9 11 1234 5678" },
 ];
 
-export default function PhoneInput() {
+const PhoneInput = () => {
   const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]);
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -34,7 +35,7 @@ export default function PhoneInput() {
   return (
     <div className="w-full max-w-2xl mx-auto mt-4">
       <label className="block mb-2 text-sm font-medium text-gray-700 text-left">
-        Phone Number *
+       {BUTTONS.PHONE}
       </label>
       <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 bg-white relative">
         <div
@@ -91,3 +92,5 @@ export default function PhoneInput() {
     </div>
   );
 }
+
+export default PhoneInput;

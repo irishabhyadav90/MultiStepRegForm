@@ -5,7 +5,7 @@ import RegistrationLayout from '@/components/layout/Registration';
 
 interface OTPInputStepProps {
   prevStep: () => void;
-  nextStep: () => void;
+  nextStep: (otpOption: 'phone' | 'email') => void;
 }
 const OtpInputStep: React.FC<OTPInputStepProps> = ({ prevStep, nextStep }) => {
   const [otpOption, setOtpOption] = useState<'phone' | 'email'>('email');
@@ -19,7 +19,7 @@ const OtpInputStep: React.FC<OTPInputStepProps> = ({ prevStep, nextStep }) => {
       step="Step 2 of 3"
       title="Registration"
       subtitle="Please enter below information to create your account."
-      onNext={nextStep}
+      onNext={() => nextStep(otpOption)}
       onPrev={prevStep}
     >
       <main>

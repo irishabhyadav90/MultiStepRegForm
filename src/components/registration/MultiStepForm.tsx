@@ -4,6 +4,7 @@ import OTPVerificationMethodStep from '@components/registration/steps/OTPVerific
 import OTPInputStep from '@components/registration/steps/OTPInputStep';
 
 import { type PersonalInfoFormData } from '@utils/validationSchemas';
+import { registerUser, sendOtp, verifyOtp } from '@/api/auth';
 
 interface ISteps {
   PERSONAL_INFO: number;
@@ -32,8 +33,13 @@ const MultiStepForm: React.FC = () => {
   const nextStep = () => setStep(prev => prev + 1);
   const prevStep = () => setStep(prev => prev - 1);
 
-  const onSubmit = () => {
-    console.log('Form submitted:', formData);
+  const onSubmit = async() => {
+     try {
+       await registerUser(formData);
+       console.log('Form submitted:', formData);
+     } catch (error) {
+       console.error('Error submitting form:', error);
+     }
   };
 
   const updateFormData = (newData: Partial<PersonalInfoFormData>) => {
@@ -41,6 +47,32 @@ const MultiStepForm: React.FC = () => {
       ...prev,
       ...newData
     }));
+  };
+  
+  // Handle OTP input step submission on both email and phone
+  const handleOtpInputStepSubmit = async (otpOption: 'phone' | 'email') => {
+    try {
+       await sendOtp({
+        identifier: formData.email,
+        method: otpOption
+      });
+      nextStep();
+    } catch (error) {
+      console.error('Error sending OTP:', error);
+    }
+  };
+
+  // Handle OTP verification step submission
+  const onVerifyOTP = async (otp: string) => {
+    try {
+      await verifyOtp({
+        identifier: formData.email,
+        otp
+      });
+      nextStep();
+    } catch (error) {
+      console.error('Error verifying OTP:', error);
+    }
   };
 
   const renderStep = () => {
@@ -56,15 +88,15 @@ const MultiStepForm: React.FC = () => {
       case STEPS.OTP_INPUT:
         return (
           <OTPInputStep 
-          prevStep={prevStep}
-          nextStep={nextStep}
+           prevStep={prevStep}
+           nextStep={handleOtpInputStepSubmit}
           />
         );
       case STEPS.OTP_VERIFICATION_METHOD:
           return (
           <OTPVerificationMethodStep 
             prevStep={prevStep}
-            nextStep={onSubmit}
+            nextStep={onVerifyOTP}
             email={formData.email}
             phone={formData.phoneNumber}
           />

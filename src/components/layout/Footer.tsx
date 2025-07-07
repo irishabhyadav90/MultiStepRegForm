@@ -7,6 +7,7 @@ import {
   FaApple,
 } from 'react-icons/fa6';
 import { FOOTER_LINKS } from '@utils/appConstants';
+import { FOOTER } from '@/constants/appTexts';
 
 
 const Footer: React.FC = () => {
@@ -27,9 +28,9 @@ const Footer: React.FC = () => {
           ))}
 
           <div className="sm:col-span-1 col-span-2 text-sm flex flex-col gap-2">
-            <p className="font-medium">Wynn and Encore Las Vegas</p>
-            <p>3131 Las Vegas Blvd. Las Vegas, NV 89109</p>
-            <p>+1 (702) 770-7000</p>
+            <p className="font-medium">{FOOTER.LOCATION}</p>
+            <p>{FOOTER.ADDRESS}</p>
+            <p>{FOOTER.PHONE}</p>
 
             <p className="mt-4 mb-2">Connect with us.</p>
             <div className="flex gap-3 text-[#5a3521]">
@@ -48,8 +49,8 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="text-center text-xs text-white mt-10 space-y-1">
-          <p>Do Not Sell Or Share My Data</p>
-          <p>© 2024 Wynn Resorts Holdings, LLC. All rights reserved.</p>
+          <p>{FOOTER.DO_NOT_SELL}</p>
+          <p>{FOOTER.COPYRIGHT}</p>
         </div>
       </div>
     </footer>

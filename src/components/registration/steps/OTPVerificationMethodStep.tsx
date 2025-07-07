@@ -8,7 +8,7 @@ import { BUTTONS, OTP_VERIFICATION } from '@constants/appTexts';
 type OtpInputFormProps = {
   email: string;
   phone: string;
-  nextStep: () => void;
+  nextStep: (otp: string) => void;
   prevStep: () => void;
 };
 
@@ -23,7 +23,7 @@ const OtpInputForm: React.FC<OtpInputFormProps> = ({ email, nextStep, prevStep }
       step="Step 3 of 3"
       title="Registration"
       subtitle="Please enter below information to create your account."
-      onNext={nextStep}
+      onNext={() => nextStep((otp).join(''))}
       onPrev={prevStep}
     >
       <SectionHeading text="OTP Verification" className='text-left' />

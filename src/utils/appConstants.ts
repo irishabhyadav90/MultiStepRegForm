@@ -32,3 +32,25 @@ export const PHONE_COUNTRY_CODES: SelectOption[] = [
   { value: '91', label: '🇮🇳 +91 (India)' },
   { value: '86', label: '🇨🇳 +86 (China)' },
 ];
+
+
+export const FOOTER_LINKS = [
+  [
+    'Shop Home Collection',
+    'Gift Cards',
+    'Wynn Stories',
+    'Wynn Slots App',
+    'Mobile App',
+    'Responsible Gaming',
+  ],
+  [
+    'About Us',
+    'Careers',
+    'Investor Relations',
+    'Privacy Notice',
+    'Cookie Notice',
+    'Terms of Use',
+    'Hotel Information & Directory',
+  ],
+  ['Wynn Palace Cotai', 'Encore Boston Harbor', 'Wynn Macau'],
+];

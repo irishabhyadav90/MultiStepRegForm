@@ -57,8 +57,8 @@
 body {
   /* Use the main font family name and default to regular weight and normal style */
   font-family: 'Big Caslon CC', serif; /* Now, 'Big Caslon CC' will load based on weight/style */
-  background-color: #F7F7F7;
-  color: #333333;
+  background-color: var(--color-wynn-background);
+  color: var(--color-wynn-text-dark);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -69,7 +69,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Big Caslon CC', serif; /* All headings also use the same font family */
-  color: #333333;
+  color: var(--color-wynn-text-dark);
 }
 
 h1 {
@@ -78,9 +78,9 @@ h1 {
 
 /* You can still define custom CSS variables for colors if desired, like this: */
 :root {
-  --color-primary: #325C54;
-  --color-secondary: #A58B5C;
-  --color-wynn-background: #F7F5EF;
+  --color-primary: #5A3A27;
+  --color-secondary: #006F62;
+  --color-wynn-background: #F7F7F7;
   --color-wynn-text-dark: #333333;
   --color-wynn-text-light: #666666;
   --color-wynn-border: #D0D0D0;
@@ -88,11 +88,10 @@ h1 {
   --color-wynn-link: #007BFF;
 }
 
-a {
-  color: var(--color-wynn-link);
-  text-decoration: underline;
-}
-
 input, select, textarea, button {
   font-family: inherit;
 }
+
+footer {
+  background-color: var(--color-primary);
+} 

@@ -29,24 +29,24 @@ const RegistrationLayout: React.FC<RegistrationLayoutProps> = ({ step, title, su
           {children}
         </main>       
         {showButtons && (
-          <footer className="mt-8 sm:mt-10 md:mt-12 flex justify-between gap-4 w-full bg-red-500">
+          <div className="mt-8 sm:mt-10 md:mt-12 flex gap-6">
             <Button
-              variant={ButtonConstants.Variants.SECONDARY}
+              variant={ButtonConstants.Variants.OUTLINE}
               size={ButtonConstants.Sizes.MEDIUM}
-              className="w-1/3 sm:w-32 px-4 py-2.5 text-sm sm:text-base bg-[--color-secondary]"
+              className="flex-1 sm:w-32 px-4 py-2.5 text-sm sm:text-base"
               onClick={onPrev}
             >
               {BUTTONS.BACK}
             </Button>
             <Button
-              variant={ButtonConstants.Variants.PRIMARY}
+              variant={ButtonConstants.Variants.SECONDARY}
               size={ButtonConstants.Sizes.MEDIUM}
-              className="w-2/3 sm:w-48 px-4 py-2.5 text-sm sm:text-base bg-[--color-primary]"
+              className="flex-1 sm:w-48 px-4 py-2.5 text-sm sm:text-base"
               onClick={onNext}
             >
               {BUTTONS.NEXT}
             </Button>
-          </footer>
+          </div>
         )}
       </div>
     </div>

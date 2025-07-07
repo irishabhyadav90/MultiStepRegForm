@@ -9,16 +9,16 @@ const baseButtonStyles = 'rounded-md transition-colors duration-200 focus:outlin
  */
 export const getButtonVariantStyles = (variant: ButtonVariant): string => {
   switch (variant) {
-    case 'primary': // Referencing literals from `ButtonVariant` type directly
-      return 'bg-[var(--color-primary)] text-white hover:bg-[var(--color-secondary)] focus:ring-[var(--color-primary)]';
+    case 'primary':
+      return 'bg-[var(--color-primary)] text-white';
     case 'secondary':
-      return 'bg-[var(--color-secondary)] text-white hover:bg-[var(--color-primary)] focus:ring-[var(--color-secondary)]';
+      return 'bg-[var(--color-secondary)] text-white';
     case 'outline':
-      return 'border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white focus:ring-[var(--color-primary)]';
+      return 'border border-[var(--color-primary)] text-[var(--color-primary)]';
     case 'ghost':
-      return 'text-[var(--color-primary)] hover:bg-gray-100 focus:ring-gray-300';
+      return 'text-[var(--color-primary)]';
     default:
-      return 'bg-gray-200 text-gray-800 hover:bg-gray-300';
+      return 'bg-gray-200 text-gray-800';
   }
 };
 

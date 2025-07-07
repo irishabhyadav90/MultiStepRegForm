@@ -5,9 +5,20 @@ import OTPInputStep from '@components/registration/steps/OTPInputStep';
 
 import { type PersonalInfoFormData } from '@utils/validationSchemas';
 
+interface ISteps {
+  PERSONAL_INFO: number;
+  OTP_INPUT: number;
+  OTP_VERIFICATION_METHOD: number;
+}
+
+const STEPS: ISteps = {
+  PERSONAL_INFO: 1,
+  OTP_INPUT: 2,
+  OTP_VERIFICATION_METHOD: 3,
+}
 
 const MultiStepForm: React.FC = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState<number>(STEPS.PERSONAL_INFO);
   const [formData, setFormData] = useState<PersonalInfoFormData>({
     firstName: '',
     lastName: '',
@@ -34,7 +45,7 @@ const MultiStepForm: React.FC = () => {
 
   const renderStep = () => {
     switch (step) {
-      case 1:
+      case STEPS.PERSONAL_INFO:
         return (
           <PersonalInfoStep 
             formData={formData}
@@ -42,14 +53,14 @@ const MultiStepForm: React.FC = () => {
             nextStep={nextStep}
           />
         );
-      case 2:
+      case STEPS.OTP_INPUT:
         return (
           <OTPInputStep 
           prevStep={prevStep}
           nextStep={nextStep}
           />
         );
-      case 3:
+      case STEPS.OTP_VERIFICATION_METHOD:
           return (
           <OTPVerificationMethodStep 
             prevStep={prevStep}
@@ -62,10 +73,10 @@ const MultiStepForm: React.FC = () => {
         return <div>Step not found</div>;
     }
   };
-
+  
   return (
     <>
-    {renderStep()}
+      {renderStep()}
     </>
   );
 }

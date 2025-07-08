@@ -20,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      data-testid="button"
       className={`${baseButtonStyles} ${getButtonVariantStyles(variant)} ${getButtonSizeStyles(size)} ${className || ''}`}
       {...props}
     >

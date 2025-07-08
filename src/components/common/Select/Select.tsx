@@ -35,7 +35,7 @@ const Select: React.FC<SelectProps> = ({
   const selectClasses = `${baseSelectStyles} ${getSelectBorderStyles(error)} ${className || ''}`;
 
   return (
-    <div className="mb-4">
+    <div className="mb-4" data-testid="select-container">
       {label && (
         <div className="flex items-center gap-2 mb-1">
           <label htmlFor={selectId} className={`${labelTextStyles} flex-1`} style={{ color: 'var(--color-wynn-text-dark)' }}>
@@ -48,6 +48,7 @@ const Select: React.FC<SelectProps> = ({
       )}
       <div className="relative">
         <select
+          data-testid="select"
           id={selectId}
           className={selectClasses}
           {...props}

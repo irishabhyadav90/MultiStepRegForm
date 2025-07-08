@@ -29,9 +29,8 @@ const Checkbox: React.FC<CheckboxProps> = ({
     ${error ? errorVisualStyles : ''}
   `;
 
-  console.log("props", props) 
   return (
-    <div className={`flex items-start mb-4 ${className || ''}`}>
+    <div className={`flex items-start mb-4 ${className || ''}`} data-testid="checkbox-container">
       <div className="relative flex items-center h-5 mr-3">
         {/* Hidden native checkbox for functionality and accessibility */}
         <input
@@ -43,6 +42,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         {/* Custom visual checkbox */}
         <div
           className={customCheckboxClasses}
+          data-testid="checkbox"
           style={{
             boxShadow: !props.checked && !error ? 'inset 0 0 0 1px var(--color-wynn-border)' : 'none',
           }}

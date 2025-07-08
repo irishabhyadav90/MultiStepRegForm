@@ -16,10 +16,11 @@ interface PhoneInputProps {
   value: string;
   onChange: (value: string) => void;
   error?: string;
+  countryOptions?: Country[];
 }
 
 /* Todo: Add more countries and move this to utils */
-const countries: Country[] = [
+export const countries: Country[] = [
   { name: "UAE", code: "AE", dialCode: "+971", flag: "🇦🇪", format: "50 123 4567" },
   { name: "Albania", code: "AL", dialCode: "+355", flag: "🇦🇱", format: "69 123 4567" },
   { name: "Andorra", code: "AD", dialCode: "+376", flag: "🇦🇩", format: "612 345" },
@@ -28,14 +29,14 @@ const countries: Country[] = [
   { name: "Argentina", code: "AR", dialCode: "+54", flag: "🇦🇷", format: "9 11 1234 5678" },
 ];
 
-const PhoneInput = ({ value, onChange, error }: PhoneInputProps) => {
+const PhoneInput = ({ value, onChange, error, countryOptions }: PhoneInputProps) => {
   const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]);
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [phone, setPhone] = useState(value);
-  const [placeholder, setPlaceholder] = useState(`${countries[0].dialCode} ${countries[0].format}`);
+  const [placeholder, setPlaceholder] = useState(`${selectedCountry.dialCode} ${selectedCountry.format}`);
 
-  const filteredCountries = countries.filter((country) =>
+  const filteredCountries = countryOptions?.filter((country: any) =>
     country.name.toLowerCase().includes(search.toLowerCase())
   );
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +46,7 @@ const PhoneInput = ({ value, onChange, error }: PhoneInputProps) => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-4">
+    <div className="w-full max-w-2xl mx-auto mt-4" data-testid="phone-dropdown-container">
       <label className="block mb-2 text-sm font-medium text-gray-700 text-left">
        {FORM_LABELS.PHONE_NUMBER}
       </label>
@@ -59,6 +60,7 @@ const PhoneInput = ({ value, onChange, error }: PhoneInputProps) => {
         </div>
         { /* Todo: Check if we could replace this with Input component */}
         <input
+          data-testid="phone-input"
           type="text"
           className="ml-2 outline-none w-full"
           placeholder={placeholder}
@@ -69,6 +71,7 @@ const PhoneInput = ({ value, onChange, error }: PhoneInputProps) => {
         {isOpen && (
           <div className="absolute top-full left-0 w-full z-10 bg-white shadow-md rounded-md mt-1 max-h-64 overflow-auto">
             <Input
+              data-testid="phone-search-input"
               type="text"
               className="w-full p-2 border-b border-gray-200 outline-none"
               placeholder="Search"
@@ -76,8 +79,9 @@ const PhoneInput = ({ value, onChange, error }: PhoneInputProps) => {
               onChange={(e) => setSearch(e.target.value)}
             />
             <ul>
-              {filteredCountries.map((country) => (
+              {filteredCountries?.map((country) => (
                 <li
+                  data-testid="country-option"
                   key={country.code}
                   onClick={() => {
                     setSelectedCountry(country);

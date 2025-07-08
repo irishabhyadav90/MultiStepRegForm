@@ -26,7 +26,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
   const inputClasses = `${baseInputStyles} ${getInputBorderStyles(error)} ${className || ''}`;
 
   return (
-    <div className="mb-4">
+    <div className="mb-4" data-testid="input-container">
       {label && (
         <div className="flex items-center gap-2 mb-1">
           <label htmlFor={inputId} className={`${labelTextStyles} flex-1`} style={{ color: 'var(--color-wynn-text-dark)' }}>
@@ -38,13 +38,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
         </div>
       )}
       <input
+        data-testid="input"
         id={inputId}
         ref={ref}
         className={inputClasses}
         {...props}
       />
       {error && (
-        <p className={errorMessageStyles} style={{ color: 'var(--color-wynn-error)' }}>
+        <p data-testid="error-message" className={errorMessageStyles} style={{ color: 'var(--color-wynn-error)' }}>
           {error}
         </p>
       )}

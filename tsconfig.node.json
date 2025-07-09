@@ -2,9 +2,10 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "target": "ES2023",
-    "lib": ["ES2023"],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "jsx": "react-jsx",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -34,5 +35,5 @@
       "@steps/*": ["./src/components/registration/steps/*"]
     }
   },
-
+  // "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx", "**/__tests__/**"]
 }

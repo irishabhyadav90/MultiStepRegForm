@@ -1,18 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import PhoneDropdown from '../PhoneDropdown';
-import { countries } from '../PhoneDropdown';
+import { COUNTRY_OPTIONS } from '@utils/appConstants';
 
 // Mock the countries array for testing
 vi.mock('../PhoneDropdown', async () => {
   const actual = await vi.importActual('../PhoneDropdown');
   return {
     ...actual,
-    countries: [
-      { name: "UAE", code: "AE", dialCode: "+971", flag: "🇦🇪", format: "50 123 4567" },
-      { name: "United Kingdom", code: "GB", dialCode: "+44", flag: "🇬🇧", format: "7700 900123" },
-      { name: "United States", code: "US", dialCode: "+1", flag: "🇺🇸", format: "(201) 555-0123" }
-    ]
+    countryOptions: COUNTRY_OPTIONS
   };
 });
 
@@ -21,7 +17,7 @@ describe('PhoneDropdown Component', () => {
     value: '',
     onChange: vi.fn(),
     error: undefined,
-    countryOptions: countries
+    countryOptions: COUNTRY_OPTIONS
   };
 
   beforeEach(() => {

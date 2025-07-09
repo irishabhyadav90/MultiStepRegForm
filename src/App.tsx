@@ -1,15 +1,12 @@
-import MultiStepForm from './components/registration/MultiStepForm';
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
+import { Routes, Route } from "react-router";
+import Register from "./pages/register";
 
-function App() {
-	return (
-		<div>
-		<Header />
-		 <MultiStepForm />
-		 <Footer />
-		</div>
-	);
-}
+const Navigation = () => {
+    return (
+        <Routes>
+            <Route index path="/register" element={<Register />} />
+        </Routes>
+    );
+};
 
-export default App;
+export default Navigation;

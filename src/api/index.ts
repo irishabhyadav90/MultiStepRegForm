@@ -1,9 +1,14 @@
 import axios, { type AxiosInstance, AxiosError } from 'axios';
 import { ApiError, type ApiErrorResponse } from '../models/common';
 
+// Use the proxy in development, or the actual API URL in production
+const baseURL = import.meta.env.DEV
+  ? '/api'  // This will be proxied by Vite
+  : import.meta.env.VITE_API_BASE_URL || '/api';
 
+console.log("Base URL",baseURL);
 const apiClient: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL,
   headers: {
     'Content-Type': 'application/json'
   },

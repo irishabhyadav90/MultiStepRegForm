@@ -63,9 +63,23 @@ const MultiStepForm: React.FC = () => {
         otp
       });
       await registerUser(formData);
+      clearFormDataAndMoveToFirstStep();
     } catch (error) {
       console.error('Error verifying OTP:', error);
     }
+  };
+
+  const clearFormDataAndMoveToFirstStep = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      gender: '',
+      residenceCountry: '',
+      email: '',
+      phoneNumber: '',
+      agreedToTerms: false
+    });
+    setStep(STEPS.PERSONAL_INFO);
   };
 
   const renderStep = () => {

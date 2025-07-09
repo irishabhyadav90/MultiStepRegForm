@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '@components/common/Input';
 import Select from '@components/common/Select';
 import Button from '@components/common/Button';
-import { GENDER_OPTIONS, RESIDENCE_COUNTRY_OPTIONS } from '@utils/appConstants';
+import { COUNTRY_OPTIONS, GENDER_OPTIONS, RESIDENCE_COUNTRY_OPTIONS } from '@utils/appConstants';
 import { personalInfoSchema, type PersonalInfoFormData } from '@utils/validationSchemas';
 import SectionHeading from '@common/SectionHeading/SectionHeading';
 import PhoneDropdown from '@common/PhoneDropdown/PhoneDropdown';
@@ -91,6 +91,7 @@ const RegistrationForm: React.FC<PersonalInfoStepProps> = ({ formData, updateFor
               value={value}
               onChange={onChange}
               error={errors.phoneNumber?.message}
+              countryOptions={COUNTRY_OPTIONS}
             />
           )}
         />

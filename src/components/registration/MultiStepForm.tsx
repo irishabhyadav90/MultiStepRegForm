@@ -33,15 +33,6 @@ const MultiStepForm: React.FC = () => {
   const nextStep = () => setStep(prev => prev + 1);
   const prevStep = () => setStep(prev => prev - 1);
 
-  const onSubmit = async() => {
-     try {
-       await registerUser(formData);
-       console.log('Form submitted:', formData);
-     } catch (error) {
-       console.error('Error submitting form:', error);
-     }
-  };
-
   const updateFormData = (newData: Partial<PersonalInfoFormData>) => {
     setFormData(prev => ({
       ...prev,
@@ -69,7 +60,7 @@ const MultiStepForm: React.FC = () => {
         identifier: formData.email,
         otp
       });
-      nextStep();
+      await registerUser(formData);
     } catch (error) {
       console.error('Error verifying OTP:', error);
     }

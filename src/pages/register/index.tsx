@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import PersonalInfoStep from '@components/registration/steps/PersonalInfoStep';
-import OTPVerificationMethodStep from '@components/registration/steps/OTPVerificationMethodStep';
-import OTPInputStep from '@components/registration/steps/OTPInputStep';
+import { useState, lazy, Suspense } from 'react';
 
+import PersonalInfoStep from '@components/registration/steps/PersonalInfoStep';
 import { type PersonalInfoFormData } from '@utils/validationSchemas';
 import { registerUser, sendOtp, verifyOtp } from '@/api/auth';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { COMMON } from '@/constants/appTexts';
+
+const OTPVerificationMethodStep = lazy(() => import('@components/registration/steps/OTPVerificationMethodStep'));
+const OTPInputStep = lazy(() => import('@components/registration/steps/OTPInputStep'));
 
 interface ISteps {
   PERSONAL_INFO: number;
@@ -94,19 +96,23 @@ const MultiStepForm: React.FC = () => {
         );
       case STEPS.OTP_INPUT:
         return (
+        <Suspense fallback={<div>{COMMON.LOADING}</div>}>
           <OTPInputStep 
            prevStep={prevStep}
            nextStep={handleOtpInputStepSubmit}
           />
+        </Suspense>
         );
       case STEPS.OTP_VERIFICATION_METHOD:
           return (
+        <Suspense fallback={<div>{COMMON.LOADING}</div>}>
           <OTPVerificationMethodStep 
             prevStep={prevStep}
             nextStep={onVerifyOTP}
             email={formData.email}
             phone={formData.phoneNumber}
           />
+          </Suspense>
         );
       default:
         return <div>Step not found</div>;

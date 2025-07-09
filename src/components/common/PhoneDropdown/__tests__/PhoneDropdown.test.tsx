@@ -1,7 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import PhoneDropdown from '../PhoneDropdown';
 import { COUNTRY_OPTIONS } from '@utils/appConstants';
+
+import PhoneDropdown from '../PhoneDropdown';
 
 // Mock the countries array for testing
 vi.mock('../PhoneDropdown', async () => {
@@ -92,11 +93,11 @@ describe('PhoneDropdown Component', () => {
     
     // Check if input placeholder is updated
     const input = screen.getByTestId('phone-input');
-    expect(input).toHaveAttribute('placeholder', '+44 7700 900123');
+    expect(input).toHaveAttribute('placeholder', '+44 7400 123456');
     
     // Type in phone number
-    fireEvent.change(input, { target: { value: '7700123456' } });
-    expect(defaultProps.onChange).toHaveBeenCalledWith('7700123456');
+    fireEvent.change(input, { target: { value: '7400123456' } });
+    expect(defaultProps.onChange).toHaveBeenCalledWith('7400123456');
   });
 //     render(<PhoneDropdown {...defaultProps} />);
     

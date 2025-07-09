@@ -10,5 +10,6 @@ export const {
   PHONE_COUNTRY_CODES,
   OTP_VERIFICATION,
   TITLES,
-  FOOTER
+  FOOTER,
+  COMMON
 } = appTexts;

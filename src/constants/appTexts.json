@@ -73,5 +73,8 @@
     "PHONE":"+1 (702) 770-7000",
     "DO_NOT_SELL":"Do Not Sell Or Share My Data",
     "COPYRIGHT":"© 2024 Wynn Resorts Holdings, LLC. All rights reserved."
+  },
+  "COMMON": {
+    "LOADING": "Loading..."
   }
 }

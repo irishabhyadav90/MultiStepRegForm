@@ -19,22 +19,12 @@ interface PhoneInputProps {
   countryOptions?: Country[];
 }
 
-/* Todo: Add more countries and move this to utils */
-export const countries: Country[] = [
-  { name: "UAE", code: "AE", dialCode: "+971", flag: "🇦🇪", format: "50 123 4567" },
-  { name: "Albania", code: "AL", dialCode: "+355", flag: "🇦🇱", format: "69 123 4567" },
-  { name: "Andorra", code: "AD", dialCode: "+376", flag: "🇦🇩", format: "612 345" },
-  { name: "Angola", code: "AO", dialCode: "+244", flag: "🇦🇴", format: "923 456 789" },
-  { name: "Antigua", code: "AG", dialCode: "+1", flag: "🇦🇬", format: "268 123 4567" },
-  { name: "Argentina", code: "AR", dialCode: "+54", flag: "🇦🇷", format: "9 11 1234 5678" },
-];
-
-const PhoneInput = ({ value, onChange, error, countryOptions }: PhoneInputProps) => {
-  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]);
+const PhoneInput = ({ value, onChange, countryOptions }: PhoneInputProps) => {
+  const [selectedCountry, setSelectedCountry] = useState<Country>(countryOptions?.[0] || {} as Country);
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [phone, setPhone] = useState(value);
-  const [placeholder, setPlaceholder] = useState(`${selectedCountry.dialCode} ${selectedCountry.format}`);
+  const [placeholder, setPlaceholder] = useState(`${selectedCountry?.dialCode} ${selectedCountry?.format}`);
 
   const filteredCountries = countryOptions?.filter((country: any) =>
     country.name.toLowerCase().includes(search.toLowerCase())
@@ -58,7 +48,6 @@ const PhoneInput = ({ value, onChange, error, countryOptions }: PhoneInputProps)
           <span className="text-xl mr-2">{selectedCountry.flag}</span>
           <DropdownIcon/>
         </div>
-        { /* Todo: Check if we could replace this with Input component */}
         <input
           data-testid="phone-input"
           type="text"

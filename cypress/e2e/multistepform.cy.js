@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 describe('MultiStep Registration Form', () => {
     beforeEach(() => {
-      cy.visit('/'); // Change to actual form route if needed
+      cy.visit('/register'); // Change to actual form route if needed
     });
   
     it('Step 1: fills and submits personal info correctly', () => {

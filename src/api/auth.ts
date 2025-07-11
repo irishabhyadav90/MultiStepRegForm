@@ -12,7 +12,7 @@ import type {
  * Service to register a new user.
  */
 export const registerUser = async (data: RegisterUserRequest): Promise<RegisterUserResponse> => {
-  const response = await apiClient.post<RegisterUserResponse>('/register', data);
+  const response = await apiClient.post<RegisterUserResponse>('/api/register', data);
   return response.data;
 };
 
@@ -20,7 +20,7 @@ export const registerUser = async (data: RegisterUserRequest): Promise<RegisterU
  * Service to send OTP.
  */
 export const sendOtp = async (data: SendOtpRequest): Promise<SendOtpResponse> => {
-  const response = await apiClient.post<SendOtpResponse>('/sendOtpRequest', data);
+  const response = await apiClient.post<SendOtpResponse>('/api/sendOtpRequest', data);
   return response.data;
 };
 
@@ -28,6 +28,6 @@ export const sendOtp = async (data: SendOtpRequest): Promise<SendOtpResponse> =>
  * Service to verify OTP.
  */
 export const verifyOtp = async (data: VerifyOtpRequest): Promise<VerifyOtpResponse> => {
-  const response = await apiClient.post<VerifyOtpResponse>('/verify-otp', data);
+  const response = await apiClient.post<VerifyOtpResponse>('/api/verify-otp', data);
   return response.data;
 };
